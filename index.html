@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Exportar Tabla HTML a Excel</title>
+		<script src="js/jquery.min.js"></script>
+		<script src="js/jquery.table2excel.js"></script>
+		<!-- Agregar class="noEx1" excluye el <tr> de la exportacion, es decir, excluye la fila-->
+	</head>
+	<body>
+		<table class="table2excel" data-tableName="Tabla1">
+			<thead>
+				<tr class="noExl">
+					<td>Agregando la clase noExl a la fila evitamos su exportacion</td>
+					<td>Agregando la clase noExl a la fila evitamos su exportacion</td>
+				</tr>
+				<tr>
+					<td>Productos</td>
+					<td>Precio</td>
+				</tr>
+			</thead>
+			<tbody>
+				<tr> <!--Productos-->
+					<td>Ropa</td>
+					<td>Zapatos</td>
+				</tr>
+				<tr><!--Precio-->
+					<td>$140</td>
+					<td>$500</td>
+				</tr>
+			</tbody>
+
+		</table>
+
+		<script>
+		var d = new Date();
+		var hora=[d.getHours(),d.getMinutes(),d.getSeconds()];
+		var cadena = new String(hora);
+		var final=cadena.replace(/,/g,"-")
+	    console.log(cadena);
+
+			$(function() {
+
+				$(".table2excel").table2excel({
+					exclude: ".noExl",
+					name: "Excel Document Name",
+					filename: "Reporte_SNORT_"+final,
+					fileext: ".xls",
+					exclude_img: true,
+					exclude_links: true,
+					exclude_inputs: true
+				});
+			});
+		</script>
+	</body>
+</html>
